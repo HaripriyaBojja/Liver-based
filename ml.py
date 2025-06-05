@@ -12,11 +12,11 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from imblearn.over_sampling import SMOTE
 # Load the pickle files
-scaler = pickle.load(open('E:\streamlitfiles\scaler (3).pkl', 'rb'))
-with open('E:\\streamlitfiles\\xgb_liver_model.pkl', 'rb') as f:
+scaler = pickle.load(open('scaler (3).pkl', 'rb'))
+with open('xgb_liver_model.pkl', 'rb') as f:
     best_model = pickle.load(f)
 # Load the default dataset
-df = pd.read_csv('E:\\streamlitfiles\\liver.csv')
+df = pd.read_csv('liver.csv')
 # App Title
 st.markdown("""
     <h1 style='text-align: center; color: white; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; font-size: 50px;'>
@@ -124,7 +124,7 @@ with tabs[0]:
     unsafe_allow_html=True
 )
 
-    image_path = "E:\\streamlitfiles\\download.png"
+    image_path = "download.png"
     col1, col2, col3 = st.columns([1, 6, 1])
     with col2:
         st.markdown("""
@@ -176,7 +176,7 @@ with tabs[1]:
     unsafe_allow_html=True
 )
 
-    image_path = "E:\\streamlitfiles\\ml.png"
+    image_path = "ml.png"
     col1, col2, col3 = st.columns([1, 6, 1])
     with col2:
          st.markdown("""
@@ -193,7 +193,7 @@ with tabs[1]:
 with tabs[2]:
     st.header("Model Performance")
     # Load dataset
-    df = pd.read_csv("E:/streamlitfiles/liver.csv")
+    df = pd.read_csv("liver.csv")
     # Preprocess
     df['Gender'] = df['Gender'].map({'Male': 0, 'Female': 1})
     df.dropna(inplace=True)
@@ -209,7 +209,7 @@ with tabs[2]:
     # Train-test split
     X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, test_size=0.2, random_state=42)
     # Load trained XGBoost model
-    with open("E://streamlitfiles//xgb_liver_model.pkl", "rb") as f:
+    with open("xgb_liver_model.pkl", "rb") as f:
         best_model = pickle.load(f)
     # Predict and evaluate
     y_pred = best_model.predict(X_test)
